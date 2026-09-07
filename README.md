@@ -23,18 +23,6 @@ the **Shaders / interpolation** example.
 - Source: [`src/1.getting_started/3.2.shaders_interpolation/shaders_interpolation.cpp`](src/1.getting_started/3.2.shaders_interpolation/shaders_interpolation.cpp)
 - Built exe (Debug): `bin/1.getting_started/Debug/1.getting_started__3.2.shaders_interpolation.exe`
 
-## Building (Windows / Visual Studio)
-
-Bundled libs are in `lib/` and DLLs in `dlls/`; the CMake script finds them.
-
-```
-cmake -S . -B build -G "Visual Studio 18 2026" -A x64 -DCMAKE_POLICY_VERSION_MINIMUM=3.5
-cmake --build build --config Debug
-```
-
-Adjust the generator to your Visual Studio version (`Visual Studio 17 2022`, etc.).
-Executables land in `bin/<chapter>/Debug/` — run them from there so they find the
-`resources/` and shader files by relative path.
 
 For Linux and macOS build instructions, see the original repo:
 [github.com/JoeyDeVries/LearnOpenGL](https://github.com/JoeyDeVries/LearnOpenGL).
