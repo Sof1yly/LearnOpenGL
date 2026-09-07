@@ -1,0 +1,20 @@
+# stray empty nested git repo (no content, not part of upstream)
+LearnOpenGL/
+
+# build output
+bin/
+build/
+build2/
+out/
+.vs/
+
+# stray compiler artifacts dropped in the tree
+*.obj
+*.ilk
+*.pdb
+/*.exe
+
+# root DLL copies dropped by a build (originals live in dlls/)
+/assimp-vc140-mt.dll
+/ikpMP3.dll
+/irrKlang.dll
