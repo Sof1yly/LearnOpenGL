@@ -1,52 +1,40 @@
-# learnopengl.com code repository
-Contains code samples for all chapters of Learn OpenGL and [https://learnopengl.com](https://learnopengl.com). 
+# LearnOpenGL — coursework copy
 
-## Windows building
-All relevant libraries are found in /libs and all DLLs found in /dlls (pre-)compiled for Windows. 
-The CMake script knows where to find the libraries so just run CMake script and generate project of choice.
+This repository is a clone of the official **Learn OpenGL** code repository from
+[https://learnopengl.com](https://learnopengl.com) by **Joey de Vries**.
 
-Keep in mind the supplied libraries were generated with a specific compiler version which may or may not work on your system (generating a large batch of link errors). In that case it's advised to build the libraries yourself from the source.
+All tutorial code, shaders, and resources are his work, taken from the website and
+its companion repo at
+[github.com/JoeyDeVries/LearnOpenGL](https://github.com/JoeyDeVries/LearnOpenGL).
+Full credit goes to learnopengl.com. Code samples are licensed **CC BY-NC 4.0**
+(see [LICENSE.md](LICENSE.md)).
 
-## Linux building
-First make sure you have CMake, Git, and GCC by typing as root (sudo) `apt-get install g++ cmake git` and then get the required packages:
-Using root (sudo) and type `apt-get install libsoil-dev libglm-dev libassimp-dev libglew-dev libglfw3-dev libxinerama-dev libxcursor-dev  libxi-dev libfreetype-dev libgl1-mesa-dev xorg-dev` .
+I am not the author of this material — this copy exists **only for learning** and
+for the assignments in my graphics course. Any files I add or change for
+coursework live alongside the original samples and are noted below.
 
-**Build through CMake-gui:** The source directory is LearnOpenGL and specify the build directory as LearnOpenGL/build. Creating the build directory within LearnOpenGL is important for linking to the resource files (it also will be ignored by Git). Hit configure and specify your compiler files (Unix Makefiles are recommended), resolve any missing directories or libraries, and then hit generate. Navigate to the build directory (`cd LearnOpenGL/build`) and type `make` in the terminal. This should generate the executables in the respective chapter folders.
+## Assignments
 
-**Build through Cmake command line:**
+### 1. 2D creative coding — `3.2.shaders_interpolation`
+
+First assignment set by my professor: a 2D creative-coding piece built on top of
+the **Shaders / interpolation** example.
+
+- Source: [`src/1.getting_started/3.2.shaders_interpolation/shaders_interpolation.cpp`](src/1.getting_started/3.2.shaders_interpolation/shaders_interpolation.cpp)
+- Built exe (Debug): `bin/1.getting_started/Debug/1.getting_started__3.2.shaders_interpolation.exe`
+
+## Building (Windows / Visual Studio)
+
+Bundled libs are in `lib/` and DLLs in `dlls/`; the CMake script finds them.
+
 ```
-cd /path/to/LearnOpenGL
-mkdir build && cd build
-cmake ..
-cmake --build .
-```
-
-Note that CodeBlocks or other IDEs may have issues running the programs due to problems finding the shader and resource files, however it should still be able to generate the executables. To work around this problem it is possible to set an environment variable to tell the tutorials where the resource files can be found. The environment variable is named LOGL_ROOT_PATH and may be set to the path to the root of the LearnOpenGL directory tree. For example:
-
-    `export LOGL_ROOT_PATH=/home/user/tutorials/LearnOpenGL`
-
-Running `ls $LOGL_ROOT_PATH` should list, among other things, this README file and the resources directory.
-
-## Mac OS X building
-Building on Mac OS X is fairly simple:
-```
-brew install cmake assimp glm glfw freetype
-cmake -S . -B build
-cmake --build build -j$(sysctl -n hw.logicalcpu)
-```
-## Create Xcode project on Mac platform
-Thanks [@caochao](https://github.com/caochao):
-After cloning the repo, go to the root path of the repo, and run the command below:
-```
-mkdir xcode
-cd xcode
-cmake -G Xcode ..
+cmake -S . -B build -G "Visual Studio 18 2026" -A x64 -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+cmake --build build --config Debug
 ```
 
-## Glitter
-Polytonic created a project called [Glitter](https://github.com/Polytonic/Glitter) that is a dead-simple boilerplate for OpenGL. 
-Everything you need to run a single LearnOpenGL Project (including all libraries) and just that; nothing more. 
-Perfect if you want to follow along with the chapters, without the hassle of having to manually compile and link all third party libraries!
+Adjust the generator to your Visual Studio version (`Visual Studio 17 2022`, etc.).
+Executables land in `bin/<chapter>/Debug/` — run them from there so they find the
+`resources/` and shader files by relative path.
 
-## Ports
-Check out [@srcres258](https://github.com/srcres258)'s port in Rust [here](https://github.com/srcres258/learnopengl-rust/).
+For Linux and macOS build instructions, see the original repo:
+[github.com/JoeyDeVries/LearnOpenGL](https://github.com/JoeyDeVries/LearnOpenGL).
