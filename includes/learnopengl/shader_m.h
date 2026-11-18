@@ -9,6 +9,24 @@
 #include <sstream>
 #include <iostream>
 
+#include <cstdlib>
+
+// Shaders are copied next to the exe. If they aren't found relative to the working
+// directory (e.g. Visual Studio's CMake launches from the project root), look beside the exe.
+inline std::string shaderPath(const char* path)
+{
+#ifdef _WIN32
+    if (!std::ifstream(path).good())
+    {
+        char* exe = nullptr;
+        _get_pgmptr(&exe);
+        std::string dir(exe);
+        return dir.substr(0, dir.find_last_of("\\/") + 1) + path;
+    }
+#endif
+    return path;
+}
+
 class Shader
 {
 public:
@@ -28,8 +46,8 @@ public:
         try 
         {
             // open files
-            vShaderFile.open(vertexPath);
-            fShaderFile.open(fragmentPath);
+            vShaderFile.open(shaderPath(vertexPath));
+            fShaderFile.open(shaderPath(fragmentPath));
             std::stringstream vShaderStream, fShaderStream;
             // read file's buffer contents into streams
             vShaderStream << vShaderFile.rdbuf();
